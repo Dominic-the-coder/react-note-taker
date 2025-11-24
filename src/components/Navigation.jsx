@@ -1,39 +1,30 @@
 import React from 'react';
-import { Home, Plus, Shapes } from 'lucide-react';
+import { AppBar, Toolbar, Typography, Box, Button } from '@mui/material';
+import HomeIcon from '@mui/icons-material/Home';
+import AddIcon from '@mui/icons-material/Add';
+import CategoryIcon from '@mui/icons-material/Category';
 // No import needed - using CDN
 
 const Navigation = () => {
     return (
-        <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-            <div className="container-fluid">
-                <span className="navbar-brand mb-0 h1">My Notes App</span>
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-                <div className="collapse navbar-collapse" id="navbarNav">
-                    <ul className="navbar-nav">
-                        <li className="nav-item">
-                            <a className="nav-link text-white d-flex align-items-center gap-2" href="/">
-                                <Home size={20} />
-                                <span>All notes</span>
-                            </a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link text-white d-flex align-items-center gap-2" href="/add-note">
-                                <Plus size={20} />
-                                <span>Add notes</span>
-                            </a>
-                        </li>
-                        <li className="nav-item">
-                            <a className="nav-link text-white d-flex align-items-center gap-2" href="/category">
-                                <Shapes size={20} />
-                                <span>Categories</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        <AppBar position="static" color="primary">
+            <Toolbar>
+                <Typography variant="h6" component="div" sx={{ margin: 2 }}>
+                My Notes App
+                </Typography>
+                <Box sx={{ display: 'flex', gap: 2 }}>
+                <Button color="inherit bg-primary" startIcon={<HomeIcon />} href="/">
+                    All Notes
+                </Button>
+                <Button color="inherit bg-primary" startIcon={<AddIcon />} href="/add-note">
+                    Add Notes
+                </Button>
+                <Button color="inherit bg-primary" startIcon={<CategoryIcon />} href="/category">
+                    Categories
+                </Button>
+                </Box>
+            </Toolbar>
+        </AppBar>
     );
 };
 

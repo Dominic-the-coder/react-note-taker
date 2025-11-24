@@ -1,4 +1,7 @@
 import { useState, useEffect } from "react";
+import {Card, CardContent, Typography, TextField, Button, Box, IconButton,} from "@mui/material"
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const Categories = () => {
     const [categories, setCategories] = useState([]);
@@ -24,28 +27,65 @@ const Categories = () => {
     };
 
     return (
-        <div className="container mt-5">
-            <h3 className="mb-4">Manage Categories</h3>
-            <div className="card p-4 shadow-sm">
-                <label className="fw-semibold">Add New Category</label>
-                <div className="input-group mb-4">
-                    <input className="form-control" placeholder="Category Name" value={newCategory} onChange={(e) => setNewCategory(e.target.value)} />
-                    <button className="btn btn-primary" type="button" onClick={handleAdd}>
-                        ADD
-                    </button>
-                </div>
-                <h6 className="fw-semibold mb-3">Existing Categories ({categories.length})</h6>
+        <Box sx={{ maxWidth: 600, mx: "auto", mt: 5 }}>
+            <Typography variant="h5" sx={{ mb: 3 }}>
+                Manage Categories
+            </Typography>
+
+            <Card sx={{ p: 2, boxShadow: 3 }}>
+                <CardContent>
+                <Typography sx={{ fontWeight: 600, mb: 1 }}>
+                    Add New Category
+                </Typography>
+
+                <Box sx={{ display: "flex", gap: 2, mb: 4 }}>
+                    <TextField
+                    fullWidth
+                    placeholder="Category Name"
+                    value={newCategory}
+                    onChange={(e) => setNewCategory(e.target.value)}
+                    />
+                    <Button
+                    variant="contained"
+                    onClick={handleAdd}
+                    >
+                    ADD
+                    </Button>
+                </Box>
+
+                <Typography sx={{ fontWeight: 600, mb: 2 }}>
+                    Existing Categories ({categories.length})
+                </Typography>
+
                 {categories.map((cat, i) => (
-                    <div key={i} className="d-flex justify-content-between align-items-center border-bottom py-2">
-                        <span>{cat}</span>
-                        <div className="d-flex gap-3">
-                            <i className="bi bi-pencil text-primary" style={{ cursor: "pointer" }}></i>
-                            <i className="bi bi-trash text-danger" style={{ cursor: "pointer" }} onClick={() => handleDelete(cat)}></i>
-                        </div>
-                    </div>
+                    <Box
+                    key={i}
+                    sx={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        py: 1.5,
+                    }}
+                    >
+                    <Typography>{cat}</Typography>
+
+                    <Box sx={{ display: "flex", gap: 1 }}>
+                        <IconButton color="primary">
+                        <EditIcon />
+                        </IconButton>
+
+                        <IconButton
+                        color="error"
+                        onClick={() => handleDelete(cat)}
+                        >
+                        <DeleteIcon />
+                        </IconButton>
+                    </Box>
+                    </Box>
                 ))}
-            </div>
-        </div>
+                </CardContent>
+            </Card>
+        </Box>
     );
 };
 export default Categories;
